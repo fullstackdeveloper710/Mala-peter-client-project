@@ -339,13 +339,22 @@ export default function ServiceToCPage() {
 
   useEffect(() => {
     const checkDevice = () => {
+      if (typeof window === 'undefined') return;
       setIsMobile(window.innerWidth < 768);
       setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
     };
 
-    checkDevice();
+    // Initial check with a small delay to ensure viewport is ready
+    const timeoutId = setTimeout(checkDevice, 0);
+    
     window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
+    window.addEventListener('orientationchange', checkDevice);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', checkDevice);
+      window.removeEventListener('orientationchange', checkDevice);
+    };
   }, []);
 
   // Hero: service_to_c.riv (scroll-driven)
