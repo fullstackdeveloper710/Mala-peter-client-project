@@ -338,27 +338,22 @@ export default function ServiceToCPage() {
   const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const checkDevice = () => {
-      if (typeof window === 'undefined') return;
       setIsMobile(window.innerWidth < 768);
       setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
     };
 
-    // Initial check with a small delay to ensure viewport is ready
-    const timeoutId = setTimeout(checkDevice, 0);
+    // Initial check
+    checkDevice();
     
-    let resizeTimeout: NodeJS.Timeout;
-    const debouncedResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(checkDevice, 150);
-    };
-    
-    window.addEventListener('resize', debouncedResize);
+    window.addEventListener('resize', checkDevice);
+    window.addEventListener('orientationchange', checkDevice);
     
     return () => {
-      clearTimeout(timeoutId);
-      clearTimeout(resizeTimeout);
-      window.removeEventListener('resize', debouncedResize);
+      window.removeEventListener('resize', checkDevice);
+      window.removeEventListener('orientationchange', checkDevice);
     };
   }, []);
 
