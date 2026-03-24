@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRive, useViewModel, useViewModelInstance, Layout, Fit } from "@rive-app/react-webgl2";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
-import { useSwipeProgress } from "@/hooks/useSwipeProgress";
 import { riveConfig } from "@/data/rive-input-config";
 import PageBottom from "@/components/PageBottom";
 
@@ -339,23 +338,14 @@ export default function ServiceToCPage() {
   const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
     const checkDevice = () => {
       setIsMobile(window.innerWidth < 768);
       setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
     };
 
-    // Initial check
     checkDevice();
-    
     window.addEventListener('resize', checkDevice);
-    window.addEventListener('orientationchange', checkDevice);
-    
-    return () => {
-      window.removeEventListener('resize', checkDevice);
-      window.removeEventListener('orientationchange', checkDevice);
-    };
+    return () => window.removeEventListener('resize', checkDevice);
   }, []);
 
   // Hero: service_to_c.riv (scroll-driven)
@@ -390,12 +380,6 @@ export default function ServiceToCPage() {
   const heroSectionRef = useScrollProgress(
     (p) => { heroProgressRef.current = p; },
     { smooth: 0, pauseWhenOffScreen: false }
-  );
-
-  // Swipe support for hero section on mobile (uses same ref, both feed heroProgressRef)
-  useSwipeProgress(
-    (p) => { heroProgressRef.current = p; },
-    { mobileOnly: true }
   );
 
   useEffect(() => {
@@ -454,12 +438,6 @@ export default function ServiceToCPage() {
   const section23Ref = useScrollProgress(
     (p) => setScrollProgress(p),
     { smooth: 0.25, pauseWhenOffScreen: false }
-  );
-
-  // Swipe support for TOC sections on mobile (uses same ref, both feed setScrollProgress)
-  useSwipeProgress(
-    (p) => setScrollProgress(p),
-    { mobileOnly: true }
   );
 
   const section2Progress = Math.min(1, scrollProgress * 2);
