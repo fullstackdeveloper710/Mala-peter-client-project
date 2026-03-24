@@ -347,13 +347,18 @@ export default function ServiceToCPage() {
     // Initial check with a small delay to ensure viewport is ready
     const timeoutId = setTimeout(checkDevice, 0);
     
-    window.addEventListener('resize', checkDevice);
-    window.addEventListener('orientationchange', checkDevice);
+    let resizeTimeout: NodeJS.Timeout;
+    const debouncedResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(checkDevice, 150);
+    };
+    
+    window.addEventListener('resize', debouncedResize);
     
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener('resize', checkDevice);
-      window.removeEventListener('orientationchange', checkDevice);
+      clearTimeout(resizeTimeout);
+      window.removeEventListener('resize', debouncedResize);
     };
   }, []);
 
