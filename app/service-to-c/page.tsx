@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRive, useViewModel, useViewModelInstance, Layout, Fit } from "@rive-app/react-webgl2";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { useSwipeProgress } from "@/hooks/useSwipeProgress";
 import { riveConfig } from "@/data/rive-input-config";
 import PageBottom from "@/components/PageBottom";
 
@@ -391,6 +392,12 @@ export default function ServiceToCPage() {
     { smooth: 0, pauseWhenOffScreen: false }
   );
 
+  // Swipe support for hero section on mobile (uses same ref, both feed heroProgressRef)
+  useSwipeProgress(
+    (p) => { heroProgressRef.current = p; },
+    { mobileOnly: true }
+  );
+
   useEffect(() => {
     let rafId: number;
     const tick = () => {
@@ -447,6 +454,12 @@ export default function ServiceToCPage() {
   const section23Ref = useScrollProgress(
     (p) => setScrollProgress(p),
     { smooth: 0.25, pauseWhenOffScreen: false }
+  );
+
+  // Swipe support for TOC sections on mobile (uses same ref, both feed setScrollProgress)
+  useSwipeProgress(
+    (p) => setScrollProgress(p),
+    { mobileOnly: true }
   );
 
   const section2Progress = Math.min(1, scrollProgress * 2);
