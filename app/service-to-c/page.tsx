@@ -487,19 +487,19 @@ export default function ServiceToCPage() {
           marginBottom: isMobile ? "2rem" : "0",
           height: isMobile ? "200px" : "auto"
         }}>
-          {/* <RiveTextOverlay /> */}
+          <RiveTextOverlay />
         </div>
         {/* Right: Image */}
         <div className={`${isMobile ? "w-full" : "w-3/4"} relative`} style={{
           top: isMobile ? "0" : "3rem"
         }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {/* <img
+          <img
             src="/書き出し画像/Service - to C 候補者/ webP/service_to_C_Careerchangesupport.webp"
             alt="転職支援"
             className="w-full h-full object-contain"
             style={{ width: "100%" }}
-          /> */}
+          />
         </div>
       </div>
 
