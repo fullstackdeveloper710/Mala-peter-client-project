@@ -27,12 +27,19 @@ body {
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
-.peterLogo{
+
+.peterLogo {
   display: none;
 }
+
 @media (max-width:767px) {
   .canva:after {
     position: absolute;
@@ -42,6 +49,71 @@ body {
     right: 0px;
     left: 0px;
     background: #ffffff00;
-}
+  }
 
+  .boxImg {
+    left: auto !important;
+    right: -86px;
+    top: auto !important;
+    bottom: -122px;
+    width: 405px !important;
+    height: 405px !important;
+  }
+
+  .wrapperBox {
+    padding-bottom: 20px !important;
+    gap: 20px !important;
+  }
+
+  .boxNumber {
+    font-size: 90px !important;
+  }
+
+  .boxSection .boxWrapper:nth-child(1) .boxImg {
+    bottom: -227px;
+    right: -85px;
+    height: 450px !important;
+  }
+
+  .boxSection .boxWrapper:nth-child(2) .boxImg {
+    bottom: -140px;
+    right: -67px;
+    z-index: 9;
+    height: 429px !important;
+    object-fit: contain !important;
+  }
+
+  .boxSection .boxWrapper:nth-child(3) .boxImg {
+    bottom: -233px;
+    right: -138px;
+    height: 480px !important;
+    z-index: 9;
+  }
+
+  .imgTextBlock {
+    display: flex;
+    position: relative;
+    padding-right: 10px;
+  }
+
+  .boyImg {
+    padding-left: 110px;
+  }
+
+  .contentBoy {
+    position: absolute;
+    left: 0px;
+    top: -15px;
+  }
+
+  .teamCareer {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .teamCareer>div {
+    width: calc(50% - 20px);
+  }
 }

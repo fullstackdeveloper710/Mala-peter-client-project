@@ -146,11 +146,11 @@ function FeatureCard({
 
   return (
     <div
-      className={`flex-none sm:flex-1  bg-white overflow-hidden flex flex-col ${isEnd ? "items-end" : "items-start"} justify-between relative isolate self-stretch`}
+      className={`flex-none sm:flex-1 boxWrapper  bg-white overflow-hidden flex flex-col ${isEnd ? "md:items-end" : "items-start"} justify-between wrapperBox relative isolate self-stretch`}
       style={{ padding: number === "02" ? "15px 15px 100px" : 15, gap: number === "02" ? 50 : 20 }}
     >
       <div
-        className="absolute z-[0] overflow-hidden flex items-center justify-center"
+        className="absolute z-[0] boxImg overflow-hidden flex items-center justify-center"
         style={{ top: imgTop, left: imgLeft, width: imgSize, height: imgSize }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -161,9 +161,9 @@ function FeatureCard({
           style={{ left: imgShift, top: 0, transform: "scale(1)" }}
         />
       </div>
-      <div className="self-stretch flex flex-col items-start z-[1]">
+      <div className="md:self-stretch w-full flex md:flex-col flex-row-reverse  justify-between md:items-start items-center z-[1]">
         <div
-          className="relative"
+          className="relative boxNumber"
           style={{
             fontSize: isMobile ? "clamp(60px, 8vw, 154px)" : 154,
             fontFamily: "Syncopate, sans-serif",
@@ -180,7 +180,7 @@ function FeatureCard({
           dangerouslySetInnerHTML={{ __html: title }}
         />
       </div>
-      <div className="flex flex-col items-start gap-[20px] z-[2]" style={{ fontSize: isMobile ? 12 : 14, fontFamily: "'Zen Kaku Gothic New', sans-serif" }}>
+      <div className="flex flex-col items-start md:gap-[20px] gap-[10px] z-[2]" style={{ fontSize: isMobile ? 11 : 14, fontFamily: "'Zen Kaku Gothic New', sans-serif" }}>
         {points.map((p, i) => (
           <div key={i} className="relative font-medium" dangerouslySetInnerHTML={{ __html: p }} />
         ))}
@@ -473,14 +473,14 @@ export default function ServiceToCPage() {
       </section>
 
       {/* 転職支援カード: image + toc_text.riv */}
-      <div className="relative w-full flex items-stretch" style={{
+      <div className="relative w-full flex items-stretch sm:pt-0 pt-[50px]" style={{
         height: isMobile ? "auto" : "85vh",
         backgroundImage: "url('/Rectangle-271.webp')",
         paddingBottom: isMobile ? "3rem" : "5rem",
         flexDirection: isMobile ? "column" : "row"
       }}>
         {/* Left: Rive text animation */}
-        <div className={`${isMobile ? "w-full" : "w-1/4"} relative`} style={{
+        <div className={`${isMobile ? "w-full" : "w-1/4"} relative sm:block hidden`} style={{
           bottom: isMobile ? "0" : "6rem",
           left: isMobile ? "0" : "6rem",
           zIndex: "5",
@@ -490,14 +490,43 @@ export default function ServiceToCPage() {
           <RiveTextOverlay />
         </div>
         {/* Right: Image */}
-        <div className={`${isMobile ? "w-full" : "w-3/4"} relative`} style={{
+        <div className={`${isMobile ? "w-full" : "w-3/4"} imgTextBlock relative`} style={{
           top: isMobile ? "0" : "3rem"
         }}>
+          <div className="sm:hidden block w-[300px] contentBoy">
+            <div className="flex flex-col gap-2 p-6  justify-center items-start">
+
+              {/* Small Title */}
+              <div className="text-[#004345] text-[14px] font-semibold tracking-wide">
+                転職支援
+              </div>
+
+              {/* Highlighted Lines */}
+              <div className="space-y-1">
+                <p className="bg-white inline-block px-3 py-[2px] text-[14px] text-black font-medium shadow-sm">
+                  あなたが、あなたの人生を
+                </p>
+
+                <p className="bg-white inline-block px-3 py-[2px] text-[14px] text-black font-medium shadow-sm">
+                  生きられるように
+                </p>
+
+                <p className="bg-white inline-block px-3 py-[2px] text-[14px] text-black font-medium shadow-sm">
+                  キャリア設計から
+                </p>
+
+                <p className="bg-white inline-block px-3 py-[2px] text-[14px] text-black font-medium shadow-sm">
+                  寄り添う転職支援
+                </p>
+              </div>
+
+            </div>
+          </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/書き出し画像/Service%20-%20to%20C%20候補者/webP/service_to_C_Careerchangesupport.webp"
+            src={isMobile ? "/書き出し画像/Service%20-%20to%20C%20候補者/webP/service_to_C_Careerchangesupport_mobile.webp" : "/書き出し画像/Service%20-%20to%20C%20候補者/webP/service_to_C_Careerchangesupport.webp"}
             alt="転職支援"
-            className="w-full h-full object-contain"
+            className="w-full h-full boyImg object-contain"
             style={{ width: "100%" }}
           />
         </div>
@@ -549,7 +578,7 @@ export default function ServiceToCPage() {
 
       {/* Three summary cards on dark teal background */}
       <div
-        className={`w-full ${isMobile ? "flex-col" : "flex-row"} flex items-start gap-[30px] flex-wrap`}
+        className={`w-full ${isMobile ? "flex-col" : "flex-row"} boxSection flex items-start gap-[30px] flex-wrap`}
         style={{ backgroundColor: "#004345", padding: isMobile ? "30px 20px" : 50, height: isMobile ? "auto" : "auto" }}
       >
         <FeatureCard
@@ -611,7 +640,7 @@ export default function ServiceToCPage() {
 
         {/* Advisor cards */}
         <div
-          className={`self-stretch ${isMobile ? "flex-col" : "flex-row"} flex items-center ${isMobile ? "items-stretch" : "justify-center"} gap-[${isMobile ? 30 : 50}px]`}
+          className={`self-stretch ${isMobile ? "flex-col" : "flex-row"} flex teamCareer items-center ${isMobile ? "items-stretch" : "justify-center"} gap-[${isMobile ? 30 : 50}px]`}
           style={{ padding: isMobile ? "50px 20px" : "75px 0 100px" }}
         >
           <div className="transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] cursor-pointer">
