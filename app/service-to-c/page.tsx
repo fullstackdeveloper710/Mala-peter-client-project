@@ -583,7 +583,7 @@ export default function ServiceToCPage() {
             {/* Base: toc_01 */}
             <div className="absolute inset-0 w-full h-full bg-white" style={{ minHeight: "100vh" }}>
               {RiveComponent01 ? (
-                <RiveComponent01 className="w-full h-full" style={riveStyle} />
+                <RiveComponent01 className="w-full h-full canva relative" style={riveStyle} />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_01 読み込み中…</div>
               )}
@@ -594,7 +594,7 @@ export default function ServiceToCPage() {
               style={{ minHeight: "100vh", transform: `translateY(${(1 - section2Progress) * 100}%)`, willChange: "transform" }}
             >
               {RiveComponent02 ? (
-                <RiveComponent02 className="w-full h-full" style={riveStyle} />
+                <RiveComponent02 className="w-full h-full canva relative" style={riveStyle} />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_02 読み込み中…</div>
               )}
@@ -605,7 +605,7 @@ export default function ServiceToCPage() {
               style={{ minHeight: "100vh", transform: `translateY(${(1 - section3Progress) * 100}%)`, willChange: "transform" }}
             >
               {RiveComponent03 ? (
-                <RiveComponent03 className="w-full h-full" style={riveStyle} />
+                <RiveComponent03 className="w-full h-full canva relative" style={riveStyle} />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_03 読み込み中…</div>
               )}
