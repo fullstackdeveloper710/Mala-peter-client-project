@@ -494,12 +494,12 @@ export default function ServiceToCPage() {
           top: isMobile ? "0" : "3rem"
         }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {/* <img
+          <img
             src="/書き出し画像/Service - to C 候補者/ webP/service_to_C_Careerchangesupport.webp"
             alt="転職支援"
             className="w-full h-full object-contain"
             style={{ width: "100%" }}
-          /> */}
+          />
         </div>
       </div>
 
