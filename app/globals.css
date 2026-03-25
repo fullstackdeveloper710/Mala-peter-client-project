@@ -30,7 +30,9 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
+.peterLogo{
+  display: none;
+}
 @media (max-width:767px) {
   .canva:after {
     position: absolute;
@@ -41,4 +43,5 @@ body {
     left: 0px;
     background: #ffffff00;
 }
+
 }

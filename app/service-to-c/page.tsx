@@ -593,8 +593,8 @@ export default function ServiceToCPage() {
           <div
             className="relative"
             style={{
-              fontSize: "clamp(70px, 18vw, 272px)",
-              lineHeight: isMobile ? "100px" : "182px",
+              fontSize: "clamp(55px, 16vw, 272px)",
+              lineHeight: isMobile ? "80px" : "182px",
               fontFamily: "Syncopate, sans-serif",
               color: "#004345",
             }}

@@ -116,7 +116,7 @@ export default function Navbar() {
       <div
         className="fixed inset-0 z-[55] flex flex-col transition-all duration-300"
         style={{
-          transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
+          transform: menuOpen ? "translateY(0)" : "translateY(-120%)",
           pointerEvents: menuOpen ? "auto" : "none",
         }}
       >
@@ -187,7 +187,7 @@ export default function Navbar() {
             </div>
             {/* LINE button */}
             <div
-              className="self-stretch rounded-[500px] flex items-center justify-between"
+              className="self-stretch  rounded-[500px] sm:flex hidden items-center justify-between"
               style={{
                 backgroundColor: "#06c755",
                 padding: "15px 30px",
@@ -207,7 +207,7 @@ export default function Navbar() {
         </div>
 
         {/* Bottom-left logo */}
-        <div className="z-[2] flex items-end justify-start" style={{ padding: "10px 0 15px 15px" }}>
+        <div className="z-[2] peterLogo flex items-end justify-start" style={{ padding: "10px 0 15px 15px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/LOGO.svg" alt="Peter Pan" style={{ height: 20, width: "auto" }} />
         </div>
