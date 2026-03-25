@@ -155,7 +155,7 @@ function FeatureCard({
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/service_toC-${number}.webp`}
+          src={`/書き出し画像/Service%20-%20to%20C%20候補者/webP/service_toC-${number}.webp`}
           alt=""
           className="w-full h-full object-cover absolute"
           style={{ left: imgShift, top: 0, transform: "scale(1)" }}
@@ -495,7 +495,7 @@ export default function ServiceToCPage() {
         }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/書き出し画像/Service - to C 候補者/ webP/service_to_C_Careerchangesupport.webp"
+            src="/書き出し画像/Service%20-%20to%20C%20候補者/webP/service_to_C_Careerchangesupport.webp"
             alt="転職支援"
             className="w-full h-full object-contain"
             style={{ width: "100%" }}
@@ -615,13 +615,13 @@ export default function ServiceToCPage() {
           style={{ padding: isMobile ? "50px 20px" : "75px 0 100px" }}
         >
           <div className="transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] cursor-pointer">
-            <AdvisorCard role="キャリアアドバイザー" name="山田 太郎" image="/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/ca_01.webp" isMobile={isMobile} />
+            <AdvisorCard role="キャリアアドバイザー" name="山田 太郎" image="/書き出し画像/Service%20-%20to%20C%20候補者/webP/ca_01.webp" isMobile={isMobile} />
           </div>
           <div className="transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] cursor-pointer">
-            <AdvisorCard role="キャリアアドバイザー" name="山田 太郎" image="/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/ca_02.webp" isMobile={isMobile} />
+            <AdvisorCard role="キャリアアドバイザー" name="山田 太郎" image="/書き出し画像/Service%20-%20to%20C%20候補者/webP/ca_02.webp" isMobile={isMobile} />
           </div>
           <div className="transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] cursor-pointer">
-            <AdvisorCard role="キャリアアドバイザー" name="山田 太郎" image="/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/ca_03.webp" isMobile={isMobile} />
+            <AdvisorCard role="キャリアアドバイザー" name="山田 太郎" image="/書き出し画像/Service%20-%20to%20C%20候補者/webP/ca_03.webp" isMobile={isMobile} />
           </div>
         </div>
 
@@ -695,7 +695,7 @@ export default function ServiceToCPage() {
                 isMobile={isMobile}
               />
               {!isMobile && (
-                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
+                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
               )}
               <FlowStep
                 number="02"
@@ -704,7 +704,7 @@ export default function ServiceToCPage() {
                 isMobile={isMobile}
               />
               {!isMobile && (
-                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
+                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
               )}
               <FlowStep
                 number="03"
@@ -722,7 +722,7 @@ export default function ServiceToCPage() {
                 isMobile={isMobile}
               />
               {!isMobile && (
-                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
+                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
               )}
               <FlowStep
                 number="05"
@@ -731,7 +731,7 @@ export default function ServiceToCPage() {
                 isMobile={isMobile}
               />
               {!isMobile && (
-                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/%20webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
+                <img src="/書き出し画像/Service%20-%20to%20C%20候補者/webP/Vector%20(10).svg" alt="" className="shrink-0" style={{ width: 21, height: 27 }} />
               )}
               <FlowStep
                 number="06"
