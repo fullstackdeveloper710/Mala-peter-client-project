@@ -19,9 +19,9 @@ function FlowStep({
   isMobile: boolean;
 }) {
   return (
-    <div className="flex-1 flex flex-col items-start justify-center isolate gap-[20px]">
-      <div className="self-stretch flex flex-col items-start isolate z-[1]">
-        <div className="flex items-center px-5 z-[1]">
+    <div className="flex-1 sm:w-auto w-full flex flex-col items-start justify-center isolate sm:gap-[20px] gap-[10px] sm:mb-0 mb-4">
+      <div className="self-stretch flex sm:flex-col items-start isolate z-[1]">
+        <div className="flex items-center sm:px-5 z-[1]">
           <div className="flex flex-col items-start gap-[3px]">
             <div
               className="flex flex-col items-center justify-center gap-0"
@@ -43,9 +43,10 @@ function FlowStep({
           className="self-stretch flex flex-col items-center justify-center z-[0]"
           style={{
             backgroundColor: "#004345",
-            padding: isMobile ? "25px 20px" : "40px 30px",
-            marginTop: isMobile ? -15 : -20,
+            padding: isMobile ? "10px 20px" : "40px 30px",
+            marginTop: isMobile ? 0 : -20,
             fontSize: isMobile ? 18 : 24,
+            flex:isMobile? 1: "unset",
             color: "#fff",
             fontFamily: "'Zen Kaku Gothic New', sans-serif",
             textAlign: "center",
@@ -259,7 +260,7 @@ function LineCard({
         }}
       />
       <div className="self-stretch flex flex-col items-start p-[50px] box-border gap-[20px] z-[1] pb-5 w-full" style={{ padding: isMobile ? "30px 25px" : "50px" }}>
-        <div className="flex items-center justify-between relative isolate gap-[20px]">
+        <div className="flex items-center justify-between relative isolate gap-[20px] sm-w-full">
           <div className="flex flex-col items-start justify-center gap-4 z-[0] shrink-0 w-full" >
             <div
               className="relative font-medium"
@@ -281,8 +282,9 @@ function LineCard({
               width: isMobile ? 100 : 130,
               height: "auto",
               flexShrink: 0,
-              display: isMobile ? "none" : "block"
+              display: isMobile ? "" : "block"
             }}
+            className="mobImgMsgIcon"
           />
         </div>
         <div

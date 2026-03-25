@@ -116,4 +116,11 @@ body {
   .teamCareer>div {
     width: calc(50% - 20px);
   }
+  .mobImgMsgIcon{
+    position: absolute;
+    right: 20px;
+  }
+  .sm-w-full{
+    width: 100%;
+  }
 }
