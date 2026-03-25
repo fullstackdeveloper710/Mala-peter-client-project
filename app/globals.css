@@ -30,3 +30,15 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+@media (max-width:767px) {
+  .canva:after {
+    position: absolute;
+    content: '';
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background: #ffffff00;
+}
+}

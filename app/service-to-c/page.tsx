@@ -463,7 +463,7 @@ export default function ServiceToCPage() {
         <div className="sticky top-0 w-full h-screen">
           {HeroRiveComponent ? (
             <HeroRiveComponent
-              className="w-full h-full"
+              className="w-full h-full canva relative"
               style={{ width: "100%", height: "100%", touchAction: "pan-y" }}
             />
           ) : (
