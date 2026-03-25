@@ -122,6 +122,7 @@ export function useScrollProgress(
     if (typeof window !== "undefined") {
       scrollYRef.current = window.scrollY;
       window.addEventListener("scroll", handleScroll, { passive: true });
+      window.addEventListener("touchmove", handleScroll, { passive: true });
       window.addEventListener("resize", handleResize);
     }
 
@@ -129,6 +130,7 @@ export function useScrollProgress(
       cancelAnimationFrame(rafId);
       if (typeof window !== "undefined") {
         window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("touchmove", handleScroll);
         window.removeEventListener("resize", handleResize);
       }
       intersectionObserver?.disconnect();
