@@ -338,14 +338,11 @@ export default function ServiceToCPage() {
   const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    const checkDevice = () => {
+    // Only set once on mount, don't update on every resize to avoid breaking scroll listeners
+    if (typeof window !== 'undefined') {
       setIsMobile(window.innerWidth < 768);
       setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
-    };
-
-    checkDevice();
-    window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
+    }
   }, []);
 
   // Hero: service_to_c.riv (scroll-driven)
