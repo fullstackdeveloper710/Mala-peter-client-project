@@ -329,7 +329,6 @@ function RiveTextOverlay() {
   return (
     <div className="absolute inset-0 w-full h-full">
       <RiveComponent className="w-full h-full" style={{ touchAction: "pan-y" }} />
-      testing
     </div>
   );
 }
@@ -488,7 +487,7 @@ export default function ServiceToCPage() {
           marginBottom: isMobile ? "2rem" : "0",
           height: isMobile ? "200px" : "auto"
         }}>
-          <RiveTextOverlay />
+          {/* <RiveTextOverlay /> */}
         </div>
         {/* Right: Image */}
         <div className={`${isMobile ? "w-full" : "w-3/4"} relative`} style={{
