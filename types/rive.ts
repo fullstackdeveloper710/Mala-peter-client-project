@@ -85,6 +85,9 @@ export interface RiveConfig {
   toc01?: Section2Config;
   toc02?: Section2Config;
   toc03?: Section2Config;
+  tpoc01?: Section2Config;
+  tpoc02?: Section2Config;
+  tpoc03?: Section2Config;
   tocWhiteLine?: Section2Config;
 
   /** philosophy_mvv.riv: scroll-driven MVV header */

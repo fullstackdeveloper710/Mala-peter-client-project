@@ -56,6 +56,25 @@ export const riveConfig: RiveConfig = {
     fileName: "peterpan/toc_03.riv",
     stateMachineName: "State Machine 1",
   },
+
+  tpoc01: {
+    fileName: "peterpan/serive_to_c_01_phone.riv",
+    stateMachineName: "State Machine 1",
+    artboard: "main",
+    viewModelName: "ViewModel1",
+  },
+  tpoc02: {
+    fileName: "peterpan/serive_to_c_02_phone.riv",
+    stateMachineName: "State Machine 1",
+    artboard: "main",
+    viewModelName: "ViewModel1",
+  },
+  tpoc03: {
+    fileName: "peterpan/serive_to_c_03_phone.riv",
+    stateMachineName: "State Machine 1",
+    artboard: "main",
+    viewModelName: "ViewModel1",
+  },
   tocWhiteLine: {
     fileName: "peterpan/toc_whiteline.riv",
     stateMachineName: "State Machine 1",

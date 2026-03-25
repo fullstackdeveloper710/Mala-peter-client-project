@@ -401,12 +401,19 @@ export default function ServiceToCPage() {
   const cfg01 = riveConfig.toc01;
   const cfg02 = riveConfig.toc02;
   const cfg03 = riveConfig.toc03;
+  const mobileCfg01 = riveConfig.tpoc01;
+  const mobileCfg02 = riveConfig.tpoc02;
+  const mobileCfg03 = riveConfig.tpoc03;
   const cfgWhite = riveConfig.tocWhiteLine;
 
+  const activeCfg01 = isMobile ? (mobileCfg01 ?? cfg01) : cfg01;
+  const activeCfg02 = isMobile ? (mobileCfg02 ?? cfg02) : cfg02;
+  const activeCfg03 = isMobile ? (mobileCfg03 ?? cfg03) : cfg03;
+
   const src = useMemo(() => (cfg ? buildRiveSrc(cfg.fileName) : null), [cfg]);
-  const src01 = useMemo(() => (cfg01 ? buildRiveSrc(cfg01.fileName) : null), [cfg01]);
-  const src02 = useMemo(() => (cfg02 ? buildRiveSrc(cfg02.fileName) : null), [cfg02]);
-  const src03 = useMemo(() => (cfg03 ? buildRiveSrc(cfg03.fileName) : null), [cfg03]);
+  const src01 = useMemo(() => (activeCfg01 ? buildRiveSrc(activeCfg01.fileName) : null), [activeCfg01]);
+  const src02 = useMemo(() => (activeCfg02 ? buildRiveSrc(activeCfg02.fileName) : null), [activeCfg02]);
+  const src03 = useMemo(() => (activeCfg03 ? buildRiveSrc(activeCfg03.fileName) : null), [activeCfg03]);
   const srcWhite = useMemo(() => (cfgWhite ? buildRiveSrc(cfgWhite.fileName) : null), [cfgWhite]);
 
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -416,19 +423,19 @@ export default function ServiceToCPage() {
       ? { src, artboard: cfg.artboard, stateMachines: cfg.stateMachineName, autoplay: true, layout: layoutCover }
       : undefined
   );
-  const { RiveComponent: RiveComponent01 } = useRive(
-    src01 && cfg01
-      ? { src: src01, artboard: cfg01.artboard, stateMachines: cfg01.stateMachineName, autoplay: true, layout: layoutCover }
+  const { rive: rive01, RiveComponent: RiveComponent01 } = useRive(
+    src01 && activeCfg01
+      ? { src: src01, artboard: activeCfg01.artboard, stateMachines: activeCfg01.stateMachineName, autoplay: true, autoBind: true, layout: layoutCover }
       : undefined
   );
-  const { RiveComponent: RiveComponent02 } = useRive(
-    src02 && cfg02
-      ? { src: src02, artboard: cfg02.artboard, stateMachines: cfg02.stateMachineName, autoplay: true, layout: layoutCover }
+  const { rive: rive02, RiveComponent: RiveComponent02 } = useRive(
+    src02 && activeCfg02
+      ? { src: src02, artboard: activeCfg02.artboard, stateMachines: activeCfg02.stateMachineName, autoplay: true, autoBind: true, layout: layoutCover }
       : undefined
   );
-  const { RiveComponent: RiveComponent03 } = useRive(
-    src03 && cfg03
-      ? { src: src03, artboard: cfg03.artboard, stateMachines: cfg03.stateMachineName, autoplay: true, layout: layoutCover }
+  const { rive: rive03, RiveComponent: RiveComponent03 } = useRive(
+    src03 && activeCfg03
+      ? { src: src03, artboard: activeCfg03.artboard, stateMachines: activeCfg03.stateMachineName, autoplay: true, autoBind: true, layout: layoutCover }
       : undefined
   );
   const { RiveComponent: RiveComponentWhite } = useRive(
@@ -444,6 +451,34 @@ export default function ServiceToCPage() {
 
   const section2Progress = Math.min(1, scrollProgress * 2);
   const section3Progress = scrollProgress <= 0.5 ? 0 : Math.min(1, (scrollProgress - 0.5) * 2);
+
+  const vm01 = useViewModel(rive01, { name: activeCfg01?.viewModelName ?? "ViewModel1" });
+  const vm02 = useViewModel(rive02, { name: activeCfg02?.viewModelName ?? "ViewModel1" });
+  const vm03 = useViewModel(rive03, { name: activeCfg03?.viewModelName ?? "ViewModel1" });
+  const vm01Instance = useViewModelInstance(vm01, { rive: rive01, useDefault: true });
+  const vm02Instance = useViewModelInstance(vm02, { rive: rive02, useDefault: true });
+  const vm03Instance = useViewModelInstance(vm03, { rive: rive03, useDefault: true });
+
+  useEffect(() => {
+    if (!isMobile) return;
+    const setStage = (vm: ReturnType<typeof useViewModelInstance>, o1: number, o2: number, o3: number) => {
+      if (!vm) return;
+      try {
+        const p1 = vm.number("o1");
+        const p2 = vm.number("o2");
+        const p3 = vm.number("o3");
+        if (p1) p1.value = o1;
+        if (p2) p2.value = o2;
+        if (p3) p3.value = o3;
+      } catch {
+        // Ignore when the file/version does not expose o1/o2/o3.
+      }
+    };
+
+    setStage(vm01Instance, 200, 0, 0);
+    setStage(vm02Instance, 200, 200, 0);
+    setStage(vm03Instance, 200, 200, 200);
+  }, [isMobile, vm01Instance, vm02Instance, vm03Instance]);
 
   const riveStyle = { width: "100%", height: "100%", minWidth: "100%", minHeight: "100%", objectFit: "cover" as const, objectPosition: "center" as const, touchAction: "pan-y" as const };
 
@@ -544,36 +579,38 @@ export default function ServiceToCPage() {
           className="sticky top-0 bg-white overflow-hidden"
           style={{ width: "100vw", height: "100vh", minWidth: "100%", minHeight: "100vh" }}
         >
-          {/* Base: toc_01 */}
-          <div className="absolute inset-0 w-full h-full bg-white" style={{ minHeight: "100vh" }}>
-            {RiveComponent01 ? (
-              <RiveComponent01 className="w-full h-full" style={riveStyle} />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_01 読み込み中…</div>
-            )}
-          </div>
-          {/* toc_02 slides up in first half */}
-          <div
-            className="absolute inset-0 w-full h-full pointer-events-none bg-white"
-            style={{ minHeight: "100vh", transform: `translateY(${(1 - section2Progress) * 100}%)`, willChange: "transform" }}
-          >
-            {RiveComponent02 ? (
-              <RiveComponent02 className="w-full h-full" style={riveStyle} />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_02 読み込み中…</div>
-            )}
-          </div>
-          {/* toc_03 slides up in second half */}
-          <div
-            className="absolute inset-0 w-full h-full pointer-events-none bg-white"
-            style={{ minHeight: "100vh", transform: `translateY(${(1 - section3Progress) * 100}%)`, willChange: "transform" }}
-          >
-            {RiveComponent03 ? (
-              <RiveComponent03 className="w-full h-full" style={riveStyle} />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_03 読み込み中…</div>
-            )}
-          </div>
+          <>
+            {/* Base: toc_01 */}
+            <div className="absolute inset-0 w-full h-full bg-white" style={{ minHeight: "100vh" }}>
+              {RiveComponent01 ? (
+                <RiveComponent01 className="w-full h-full" style={riveStyle} />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_01 読み込み中…</div>
+              )}
+            </div>
+            {/* toc_02 slides up in first half */}
+            <div
+              className="absolute inset-0 w-full h-full pointer-events-none bg-white"
+              style={{ minHeight: "100vh", transform: `translateY(${(1 - section2Progress) * 100}%)`, willChange: "transform" }}
+            >
+              {RiveComponent02 ? (
+                <RiveComponent02 className="w-full h-full" style={riveStyle} />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_02 読み込み中…</div>
+              )}
+            </div>
+            {/* toc_03 slides up in second half */}
+            <div
+              className="absolute inset-0 w-full h-full pointer-events-none bg-white"
+              style={{ minHeight: "100vh", transform: `translateY(${(1 - section3Progress) * 100}%)`, willChange: "transform" }}
+            >
+              {RiveComponent03 ? (
+                <RiveComponent03 className="w-full h-full" style={riveStyle} />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">toc_03 読み込み中…</div>
+              )}
+            </div>
+          </>
         </div>
       </div>
 
