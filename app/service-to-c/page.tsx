@@ -328,7 +328,7 @@ function RiveTextOverlay() {
   });
   return (
     <div className="absolute inset-0 w-full h-full">
-      {/* <RiveComponent className="w-full h-full" style={{ touchAction: "pan-y" }} /> */}
+      <RiveComponent className="w-full h-full" style={{ touchAction: "pan-y" }} />
       testing
     </div>
   );
